@@ -1,12 +1,11 @@
 import multiprocessing as mp
 
-def f(x):
-    return x*x
+def f_sum(a, b):
+    return a + b
 
 if __name__ == '__main__':
-    print('Number of currently available processor = ', mp.cpu_count())
-    N = mp.cpu_count()
-    input_ = [1, 2, 3, 4, 5, 7, 9, 10]
-    print('input = ', input_)
-    with mp.Pool(N) as p:
-        print(p.map(f, input_))
+    data = [(1, 1), (2, 1), (3, 1), (6, 9)]
+    process_pool = mp.Pool(4)
+    output = process_pool.starmap(f_sum, data)
+    print("input = ", data)
+    print("output = ", output)
